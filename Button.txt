@@ -1,0 +1,41 @@
+#include "MS51_32K.H"
+#include <stdio.h>
+
+sbit LED = P3^5;
+sbit BTN = P0^4;
+
+bit flag;
+
+//unsigned char temp at 0x08;
+//unsigned char idata itemp at 0x90;
+//unsigned char xdata xtemp at 0x80;
+
+//----------------------------------------------------------------------------------------------//
+void main (void)
+{
+	bit btnstatus;
+
+  //ALL_GPIO_PUSHPULL_MODE;
+	P35_PUSHPULL_MODE;    // o/p mode
+	P04_INPUT_MODE;        //input
+	
+  btnstatus=0;
+	for(;;)
+	//while(1)
+  {
+	 if(BTN == 0) // PUSH UP 
+		 
+		{
+			btnstatus ^= 1;
+  }
+		if(btnstatus)  //push pull
+		{
+			LED = 1;
+		}
+		else
+		{
+			LED = 0;
+		}
+		Timer0_Delay(16000000,200,1000);
+	}
+}
